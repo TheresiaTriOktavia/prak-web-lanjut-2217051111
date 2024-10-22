@@ -77,7 +77,7 @@
 
     <div class="form-container">
         <h1>Create User</h1>
-        <form action="{{ route('user.store') }}" method="POST" class="needs-validation" novalidate>
+        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="nama">Nama:</label>
             <input type="text" id="nama" name="nama" placeholder="Masukkan nama" required>
@@ -95,6 +95,10 @@
                 @endforeach
             </select>
             <div class="invalid-feedback">Silahkan pilih kelas yang ada.</div>
+
+            <label for="foto">Foto:</label>
+            <input type="file" id="foto" name="foto" placeholder="Masukkan Foto Anda" pattern="\d{10}" required>
+            <div class="invalid-feedback">Anda harus memasukkan foto</div>
 
             <input type="submit" value="Submit">
         </form>
