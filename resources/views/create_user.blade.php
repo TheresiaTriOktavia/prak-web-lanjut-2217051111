@@ -80,21 +80,26 @@
         <form action="{{ route('user.store') }}" method="POST" class="needs-validation" novalidate>
             @csrf
             <label for="nama">Nama:</label>
-            <input type="text" id="nama" name="nama" placeholder="Masukkan nama" required>
+            <input type="text" id="nama" name="nama" value="{{ old('nama') }}" placeholder="Masukkan nama" required>
             <div class="invalid-feedback">Nama harus diisi.</div>
 
             <label for="npm">NPM:</label>
-            <input type="text" id="npm" name="npm" placeholder="Masukkan NPM" pattern="\d{10}" required>
+            <input type="text" id="npm" name="npm" value="{{ old('npm') }}"  placeholder="Masukkan NPM" pattern="\d{10}" required>
             <div class="invalid-feedback">NPM harus berupa 10 digit angka.</div>
 
             <label for="kelas_id">Kelas:</label>
             <select name="kelas_id" id="kelas_id" required>
                 <option value="">Pilih Kelas</option>
                 @foreach ($kelas as $kelasItem)
-                    <option value="{{$kelasItem->id}}">{{$kelasItem->nama_kelas}}</option>
+                    <option value="{{ $kelasItem->id }}" {{ old('kelas_id') == $kelasItem->id ? 'selected' : '' }}>
+                        {{ $kelasItem->nama_kelas }}
+                    </option>
                 @endforeach
             </select>
             <div class="invalid-feedback">Silahkan pilih kelas yang ada.</div>
+
+            <label for="foto">Foto: </label>
+            <input type="file" id="foto" name="foto" value="{{ old('foto') }}"><br>
 
             <input type="submit" value="Submit">
         </form>
