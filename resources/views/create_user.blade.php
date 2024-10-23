@@ -98,8 +98,9 @@
             </select>
             <div class="invalid-feedback">Silahkan pilih kelas yang ada.</div>
 
-            <label for="foto">Foto: </label>
-            <input type="file" id="foto" name="foto" value="{{ old('foto') }}"><br>
+            <label for="foto">Foto:</label>
+            <input type="file" id="foto" name="foto"  value="{{ old('foto') }}" placeholder="Masukkan Foto Anda" pattern="\d{10}" required>
+            <div class="invalid-feedback">Anda harus memasukkan foto</div>
 
             <input type="submit" value="Submit">
         </form>
