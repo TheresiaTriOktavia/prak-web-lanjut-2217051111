@@ -70,11 +70,68 @@ class UserController extends Controller
             ]);
         }
 
+<<<<<<< HEAD
         return redirect()->to('/user/list');
+=======
+        return redirect()->to('/');
+    }
+
+    public function edit($id){
+        $user = UserModel::findOrFail($id);
+        $kelasModel = new Kelas();
+        $kelas = $kelasModel->getKelas();
+        $title = 'Edit User';
+        return view('edit_user', compact('user', 'kelas', 'title'));
+    }
+
+    public function update(Request $request, $id){
+        $user = UserModel::findOrFail($id);
+
+        // Update data user lainnya
+        $user->nama = $request->nama;
+        $user->npm = $request->npm;
+        $user->kelas_id = $request->kelas_id;
+
+        // Cek apakah ada file foto yang di-upload
+        if ($request->hasFile('foto')) {
+            // Ambil nama file foto lama dari database
+            $oldFilename = $user->foto;
+
+            // Hapus foto lama jika ada
+            if ($oldFilename) {
+                $oldFilePath = public_path('storage/uploads/' . $oldFilename);
+                // Cek apakah file lama ada dan hapus
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath); // Hapus foto lama dari folder
+                }
+            }
+
+            // Simpan file baru dengan storeAs
+            $file = $request->file('foto');
+            $newFilename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('uploads', $newFilename, 'public'); // Menyimpan file ke folder uploads dalam storage/public
+
+            // Update nama file di database
+            $user->foto = $newFilename;
+        }
+
+            // Simpan perubahan pada user
+            $user->save();
+
+            return redirect()->route('user.list')->with('success', 'User Berhasil di Update');
+        }
+
+    public function destroy($id){
+        $user = UserModel::findOrFail($id);
+        $user->delete();
+
+        return redirect()->to('/')->with('success', 'User Berhasil di Hapus');
+>>>>>>> update-delete
     }
 
 
     public function show($id) {
+<<<<<<< HEAD
         $user = $this->userModel->getUser($id);
 
         $data = [
@@ -82,5 +139,15 @@ class UserController extends Controller
             'user' => $user,
         ];
         return view('profile', $data);
+=======
+       $user = UserModel::findOrFail($id);
+    $kelas = Kelas::find($user->kelas_id); // Jika ingin menampilkan nama kelas
+
+    return view('show_user', [
+        'title' => 'Show User',
+        'user' => $user,
+        'nama_kelas' => $kelas ? $kelas->nama_kelas : null, // Pastikan nama kelas ada, jika tidak tampilkan null
+    ]);
+>>>>>>> update-delete
     }
 }
