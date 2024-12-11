@@ -121,7 +121,7 @@
 <body>
 
     <div class="container">
-        <div class="profile-image" style="background-image: url('{{ asset("assets/img/pia3.jpg") }}');"></div>
+    <img src="{{ Storage::url($user->foto) }}" alt="Profile Picture" class="profile-image"></img>
         <h1>Profil Pengguna</h1>
         <form action="/submit_profile" method="POST">
             <div class="profile-item">
@@ -136,6 +136,7 @@
                 <i class="fas fa-chalkboard-teacher"></i>
                 <input type="text" name="kelas" placeholder="Kelas" value="{{ old('kelas', $nama_kelas ?? 'K') }}" readonly>
             </div>
+
             <input type="button" value="Kontak Saya" onclick="window.location.href='mailto:theresiaoktavia2004@gmail.com';">
         </form>
     </div>
