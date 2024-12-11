@@ -10,13 +10,6 @@
         <label for="nama">Nama:</label>
         <input type="text" id="nama" name="nama" placeholder="Masukkan nama" required>
         <div class="invalid-feedback">Nama harus diisi.</div>
-    <div class="form-container">
-        <h1>Create User</h1>
-        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <label for="nama">Nama:</label>
-            <input type="text" id="nama" name="nama" placeholder="Masukkan nama" required>
-            <div class="invalid-feedback">Nama harus diisi.</div>
 
         <label for="npm">NPM:</label>
         <input type="text" id="npm" name="npm" placeholder="Masukkan NPM" pattern="\d{10}" required>
@@ -34,19 +27,7 @@
         <label for="foto">Foto:</label>
         <input type="file" id="foto" name="foto" required>
         <div class="invalid-feedback">Anda harus memasukkan foto.</div>
-            <label for="kelas_id">Kelas:</label>
-            <select name="kelas_id" id="kelas_id" required>
-                <option value="">Pilih Kelas</option>
-                @foreach ($kelas as $kelasItem)
-                    <option value="{{$kelasItem->id}}">{{$kelasItem->nama_kelas}}</option>
-                @endforeach
-            </select>
-            <div class="invalid-feedback">Silahkan pilih kelas yang ada.</div>
-
-            <label for="foto">Foto:</label>
-            <input type="file" id="foto" name="foto" placeholder="Masukkan Foto Anda" pattern="\d{10}" required>
-            <div class="invalid-feedback">Anda harus memasukkan foto</div>
-
+    
         <input type="submit" value="Submit">
     </form>
 </div>
