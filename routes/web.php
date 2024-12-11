@@ -15,16 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+// Route untuk profile
+// Route::get('/data/{nama}/{kelas}/{npm}', [ProfileController::class, 'profile']);
+// Route::get('/profile/{nama}/{kelas}/{npm}', [ProfileController::class, 'profile']);
+
+// Route untuk user
 Route::get('/user/profile', [UserController::class, 'profile']);
+
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+
+Route::get('/', [UserController::class, 'index'])->name('user.list');
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/list', [UserController::class, 'index'])->name('user.list');
-Route::get('/show/{id}', [UserController::class, 'show'])->name('user.show');
-Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+
+Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
 Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+
 Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');

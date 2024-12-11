@@ -1,3 +1,4 @@
+create:
 @extends('layouts.app')
 
 @section('content')
@@ -27,7 +28,7 @@
         <label for="foto">Foto:</label>
         <input type="file" id="foto" name="foto" required>
         <div class="invalid-feedback">Anda harus memasukkan foto.</div>
-    
+
         <input type="submit" value="Submit">
     </form>
 </div>
@@ -88,5 +89,3 @@
 </style>
 
 @endsection
-<!-- </body>
-</html> -->
